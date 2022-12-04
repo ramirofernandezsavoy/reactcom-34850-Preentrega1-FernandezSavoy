@@ -86,7 +86,7 @@ const ItemListContainer = (props) => {
         <p className="m-2 fs-5 badge bg-danger text-wrap">Bienvenido, {greeting}.</p>
       </div>
       <div classname="container text-center">
-        <div className="wrapper">
+        <div className="wrapper">          
           {libros.map(({ id, titulo, autor, img, precio, btnText }, index) => (
             <Cards
               key={index}
