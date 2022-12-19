@@ -3,17 +3,23 @@ import Navbar from "./components/Navbar/Navbar";
 import Banner from "./components/Banner/Banner";
 import ItemListContainer from "./components/Itemlistcontainer/Itemlistcontainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
-import Item from "./components/Item/Item";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
       <Navbar />
       <Banner />
-      <ItemListContainer greeting='John Doe'/>
-      <ItemDetailContainer/>
-      <Item/>   
+      <Routes>
+        <Route path="/" element={<ItemListContainer greeting={'John Doe'}/>} />
+        <Route path="/:category/:categoria" element={<ItemListContainer greeting={'John Doe'}/>} />
+        <Route path="/item/detail/:id" element={<ItemDetailContainer/>} />
+      </Routes>  
     </div>
+    </Router>
+    
   );
 }
 

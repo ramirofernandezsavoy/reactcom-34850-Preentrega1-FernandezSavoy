@@ -2,16 +2,16 @@ import React from "react";
 import Cart from "../Cart/Cart";
 import logo from "./logo.png";
 import '../styles/Navbar.css'
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-1 text-center">
         <div className="container">          
-          <a href="#Texto1" className="navbar-brand">
+          <NavLink to="/" className="navbar-brand">
             <img src={logo} alt="logo" className="p-0 m-0 logo-img"/>            
-          </a>                    
+          </NavLink>                    
           <button
             className="navbar-toggler"
             type="button"
@@ -23,28 +23,23 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navmenu">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a href="#Texto1" className="nav-link">
-                  Log in
-                </a>
+                <NavLink to="/" className="nav-link">
+                  Home
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a href="#Texto2" className="nav-link">
+                <NavLink to="/wishlist" className="nav-link">
                   Lista de deseados
-                </a>
-              </li>
-              {/* <li className="nav-item">
-                <a href="#Texto3" className="nav-link">
-                  Nosotros
-                </a>
-              </li> */}
+                </NavLink>
+              </li>              
               <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <NavLink className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Género
-          </a>
+          </NavLink>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="...">Fantasía</a></li>
-            <li><a className="dropdown-item" href="...">Ciencia Ficción</a></li>            
-            <li><a className="dropdown-item" href="...">Thriller</a></li>
+            <li><NavLink className="dropdown-item" to="/category/fantasia">Fantasía</NavLink></li>
+            <li><NavLink className="dropdown-item" to="/category/ciencia_ficcion">Ciencia Ficción</NavLink></li>            
+            <li><NavLink className="dropdown-item" to="/category/thriller">Thriller</NavLink></li>
           </ul>
         </li>
             </ul>
