@@ -25,7 +25,7 @@ const resultado = libros.filter((item) => item.id === Number(id))
                 btnText={btnText}
               />
             )
-          )}
+          )}          
   </div>
   );
 };

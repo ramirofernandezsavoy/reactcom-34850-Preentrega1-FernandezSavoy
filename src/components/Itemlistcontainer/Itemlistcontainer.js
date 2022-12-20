@@ -5,9 +5,10 @@ import { useParams } from "react-router-dom";
 import libros from "../../data/libros";
 
 const ItemListContainer = ({ greeting }) => {
+  
   const { categoria } = useParams();
   const filtrado = categoria ? libros.filter((item) => item.categoria === categoria) : libros;
-
+     
   return (
     <div className="item-list-container">
       <div>
@@ -35,6 +36,6 @@ const ItemListContainer = ({ greeting }) => {
       </div>
     </div>
   );
-};
+}
 
 export default ItemListContainer;

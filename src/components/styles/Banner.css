@@ -51,6 +51,6 @@
 
 @keyframes play {
     100% {
-        background-position-x: -50px;
+        background-position-x: -150px;
     }
 }
