@@ -6,14 +6,8 @@ import ItemDetail from "../ItemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {  
 
-  const {id} = useParams()
-
-  console.log(libros, "libros")
-  console.log(id, "id")
+const {id} = useParams()
 const resultado = libros.filter((item) => item.id === Number(id))
-console.log(resultado, "resultado")
-
-
 
   return (
     <div className="container p-3">
