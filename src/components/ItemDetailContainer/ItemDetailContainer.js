@@ -7,6 +7,7 @@ import libros from "../../data/libros";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import Spinner from "../Spinner/Spinner";
 
+
 const ItemDetailContainer = () => {  
 const {id} = useParams()
 
@@ -15,17 +16,13 @@ const [resultado, setResultado] = useState()
 useEffect(() => {
 
   setTimeout(() => {
-    setResultado = libros.filter((item) => item.id === Number(id))  
+    setResultado(libros.filter((item) => item.id === Number(id)))  
   }, 3000);
 
   return () => {
     
   }
 }, [])
-
-
-
-
 
 
   return (
