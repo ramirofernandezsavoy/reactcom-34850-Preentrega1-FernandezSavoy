@@ -2,10 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const ItemDetail = (props) => {
-    const { sinopsis, titulo, autor, categoria, img, precio} = props; 
+
+  const { sinopsis, titulo, autor, categoria, img, precio} = props;  
+
   return (
-    <div className="container p-3">
-    <div className="card mb-3">
+    <div className="container p-3">      
+      <div className="card mb-3">
       <div className="row g-0">
         <div className="col-md-4 img-fluid p-3">
           <img src={img} className="img-fluid rounded-start" alt="..." />
@@ -26,14 +28,14 @@ const ItemDetail = (props) => {
             <p className="card-text">
               <small className="text-muted lead">{categoria}</small>
             </p>
-            <Link to="..." className="btn btn-danger">
+            <Link to="/cart" className="btn btn-danger">
             Comprar
             </Link>
           </div>
         </div>
       </div>
+    </div>      
     </div>
-  </div>
   )
 }
 
