@@ -9,9 +9,10 @@ import Spinner from "../Spinner/Spinner";
 const ItemListContainer = ({ greeting }) => {
   const { categoria } = useParams();
   const [res, setRes] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
+    setLoading(true)
     setTimeout(() => {
       setRes(
         categoria
