@@ -8,21 +8,20 @@ import Spinner from "../Spinner/Spinner";
 
 const ItemListContainer = ({ greeting }) => {
   const { categoria } = useParams();
-  const res = categoria
-    ? libros.filter((item) => item.categoria === categoria)
-    : libros;
+  const [res, setRes] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
     setTimeout(() => {
+      setRes(
+        categoria
+          ? libros.filter((item) => item.categoria === categoria)
+          : libros
+      );
       setLoading(false);
     }, 2000);
-    console.log(loading)
-    
-
-    return () => {};
-  }, []);
+    console.log(loading);
+  }, [categoria]);
 
   return (
     <div className="item-list-container">
