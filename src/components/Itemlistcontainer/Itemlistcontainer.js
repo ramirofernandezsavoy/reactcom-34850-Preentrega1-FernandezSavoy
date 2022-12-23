@@ -4,57 +4,35 @@ import "../styles/Itemlistcontainer.css";
 import { useParams } from "react-router-dom";
 import libros from "../../data/libros";
 import { useState, useEffect } from "react";
-import Spinner from "../Spinner/Spinner";
-
-
-
 
 const ItemListContainer = ({ greeting }) => {
-  
-  const { categoria } = useParams();     
-  const [cards, setCards] = useState([]);
-  const [loading, setLoading] = useState(false);
+const { categoria } = useParams();
+const res = categoria ? libros.filter((item) => item.categoria === categoria) : libros
+const [resultado, setResultado] = useState()
+console.log(res)
 
-  const getCards = () => {
-    setLoading(true);
-    const operacion = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(categoria ? libros.filter((item) => item.categoria === categoria) : libros);
-         reject()
-      }, 2000);
-    });
+useEffect(() => {
 
-    operacion
-      .then((resultado) => {        
-        setCards(resultado);        
-      })
-      .catch((err) => {
-        console.log("Algo fallo")   
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  setTimeout(() => {
+    
+  }, 2000);
 
-  useEffect(() => {
-    getCards();
-    return () => {
-      setCards([]);
-    };
-  }, []);
+  return () => {
+    
+  }
+}, [])
+
 
   return (
-    <div className="item-list-container">
-      {loading && <Spinner/>}
+    <div className="item-list-container">      
       <div>
         <p className="m-2 fs-5 badge bg-danger text-wrap">
           Bienvenido, {greeting}.
         </p>
       </div>
       <div className="container text-center">        
-        <div className="wrapper">
-          {!loading && cards.length > 0           
-          ? cards.map(
+        <div className="wrapper">          
+          {res.map(
             (
               { id, titulo, autor, categoria, img, precio, btnText }, 
               index
@@ -70,10 +48,7 @@ const ItemListContainer = ({ greeting }) => {
                 btnText={btnText}
               />
             )
-          )
-        : !loading && cards.length < 1 && (
-        <h1>Algo fallo, intenta mas tarde.</h1>
-        )}
+          )}          
         </div>
       </div>
     </div>
