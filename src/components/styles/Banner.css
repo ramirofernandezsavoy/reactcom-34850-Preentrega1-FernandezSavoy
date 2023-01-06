@@ -1,15 +1,11 @@
-.banner-div {
-   background-image: url('../Banner/bannerImg.jpg');
+.banner-div {   
    width: 100vw;
-   height: 350px;
-   background-repeat: no-repeat;   
-   background-position-y: center;
-   background-size: cover;   
+   height: 350px;     
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   position: relative;
+   background-color: rgba(0, 0, 0, 0.501);
 }
 
 .banner-container {     
@@ -19,11 +15,7 @@
     align-items: center;   
     background-color: rgba(0, 0, 0, 0.501);
     padding: 20px 40px 20px 40px;
-    border: solid 2px white;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 20%;
+    border: solid 2px white;    
     max-width: 700px;    
  }
 

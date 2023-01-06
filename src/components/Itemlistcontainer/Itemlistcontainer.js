@@ -32,7 +32,7 @@ const ItemListContainer = ({ greeting }) => {
         </p>
       </div>
       <div className="container text-center">
-        <div className="wrapper">
+        <div className="ilcwrapper">
           {loading ? (
             <Spinner />
           ) : (
