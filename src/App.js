@@ -15,13 +15,12 @@ function App() {
       <Banner />
       <Prueba />
       <Routes>
-        <Route path="/" element={<ItemListContainer greeting={'John Doe'}/>} />
-        <Route path="/category/:categoria" element={<ItemListContainer greeting={'John Doe'}/>} />
+        <Route path="/" element={<ItemListContainer greeting={'Usuario'}/>} />
+        <Route path="/category/:categoria" element={<ItemListContainer greeting={'Usuario'}/>} />
         <Route path="/item/detail/:id" element={<ItemDetailContainer/>} />
       </Routes>  
     </div>
-    </Router>
-    
+    </Router>    
   );
 }
 
