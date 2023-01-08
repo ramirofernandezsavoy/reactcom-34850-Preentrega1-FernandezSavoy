@@ -4,8 +4,19 @@ import Banner from "./components/Banner/Banner";
 import ItemListContainer from "./components/Itemlistcontainer/Itemlistcontainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import useFirebase from "./hooks/useFirebase";
 
 function App() {
+
+  const {productos,getProducts} = useFirebase()
+
+  useEffect(() => {
+    getProducts()  
+    return () => {
+      
+    }
+  }, [])
 
   return (
     <Router>
