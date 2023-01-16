@@ -8,7 +8,7 @@ const Cart = () => {
         <i className="bi bi-cart3 h2 link-danger cart-widget position-relative"></i>
       </a>
       <span className=" cart-counter position-absolute bg-white text-center text-danger translate-middle h5 ">
-        3
+        4
       </span>
     </div>
   );

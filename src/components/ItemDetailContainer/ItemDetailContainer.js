@@ -18,11 +18,7 @@ useEffect(() => {
     setResultado(libros.filter((item) => item.id === Number(id)))  
   }, 2000);
 
-  return () => {
-    
-  }
-}, [])
-
+  return () => {}})
 
   return (
     <div className="container p-3">

@@ -20,12 +20,12 @@ const ItemListContainer = ({ greeting }) => {
           : libros
       );
       setLoading(false);
-    }, 2000);
-    console.log(loading);
+    }, 2000);    
   }, [categoria]);
 
   return (
     <div className="item-list-container">
+      
       <div>
         <p className="m-2 fs-5 badge bg-danger text-wrap">
           Bienvenido, {greeting}.
@@ -34,8 +34,8 @@ const ItemListContainer = ({ greeting }) => {
       <div className="container text-center">
         <div className="ilcwrapper">
           {loading ? (
-            <Spinner />
-          ) : (
+            <Spinner/>
+          ) : 
             res.map(
               (
                 { id, titulo, autor, categoria, img, precio, btnText },
@@ -52,8 +52,7 @@ const ItemListContainer = ({ greeting }) => {
                   btnText={btnText}
                 />
               )
-            )
-          )}
+            )}          
         </div>
       </div>
     </div>

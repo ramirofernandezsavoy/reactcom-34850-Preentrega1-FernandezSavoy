@@ -1,6 +1,7 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Banner from "./components/Banner/Banner";
+import Footer from "./components/Footer/Footer";
 import ItemListContainer from "./components/Itemlistcontainer/Itemlistcontainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -16,19 +17,20 @@ function App() {
     return () => {
       
     }
-  }, [])
+  })
 
   return (
     <Router>
       <div className="App">
-      <Navbar />
-      <Banner />      
-      <Routes>
-        <Route path="/" element={<ItemListContainer greeting={'Usuario'}/>} />
-        <Route path="/category/:categoria" element={<ItemListContainer greeting={'Usuario'}/>} />
-        <Route path="/item/detail/:id" element={<ItemDetailContainer/>} />
-      </Routes>  
-    </div>
+        <Navbar />
+        <Banner />      
+        <Routes>
+          <Route path="/" element={<ItemListContainer greeting={'Usuario'}/>} />
+          <Route path="/category/:categoria" element={<ItemListContainer greeting={'Usuario'}/>} />
+          <Route path="/item/detail/:id" element={<ItemDetailContainer/>} />
+        </Routes>
+        <Footer/>
+      </div>
     </Router>    
   );
 }

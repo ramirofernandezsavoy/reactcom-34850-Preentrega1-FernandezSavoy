@@ -31,6 +31,14 @@
     -webkit-transform: translateY(300%);
             transform: translateY(300%); } }
 
+.spinnerBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: blue;
+  position: absolute;  
+}
+
 .building-blocks {
   position: relative; }
   .building-blocks div {
