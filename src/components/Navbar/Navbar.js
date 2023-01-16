@@ -26,12 +26,7 @@ const Navbar = () => {
                 <NavLink to="/" className="nav-link">
                   Home
                 </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/wishlist" className="nav-link">
-                  Lista de deseados
-                </NavLink>
-              </li>              
+              </li>                      
               <li className="nav-item dropdown">
           <NavLink className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Género
@@ -43,7 +38,7 @@ const Navbar = () => {
           </ul>
         </li>
             </ul>
-            <Cart />
+            {/* <Cart /> */}
           </div>
         </div>
       </nav>

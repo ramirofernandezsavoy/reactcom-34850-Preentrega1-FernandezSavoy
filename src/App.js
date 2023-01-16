@@ -7,6 +7,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import useFirebase from "./hooks/useFirebase";
+import Cart from "./components/Cart/Cart";
 
 function App() {
 
@@ -20,10 +21,12 @@ function App() {
   })
 
   return (
+    <useCartProvider>
     <Router>
       <div className="App">
         <Navbar />
-        <Banner />      
+        <Banner />
+        <Cart />    
         <Routes>
           <Route path="/" element={<ItemListContainer greeting={'Usuario'}/>} />
           <Route path="/category/:categoria" element={<ItemListContainer greeting={'Usuario'}/>} />
@@ -31,7 +34,8 @@ function App() {
         </Routes>
         <Footer/>
       </div>
-    </Router>    
+    </Router>
+    </useCartProvider>
   );
 }
 

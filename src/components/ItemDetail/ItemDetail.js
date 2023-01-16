@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 const ItemDetail = (props) => {
 
-  const { sinopsis, titulo, autor, categoria, img, precio} = props;  
-
+  const { sinopsis, titulo, autor, categoria, img, precio} = props;
+  const quantity = 0
   return (
     <div className="container p-3">      
       <div className="card mb-3">
@@ -15,7 +15,7 @@ const ItemDetail = (props) => {
         <div className="col-md-8">
           <div className="card-body">
             <h3 className="card-title h1">{titulo}</h3>
-            <p className="card-text">
+            <p className="card-text fs-6">
             {sinopsis}
             </p>
             <p><strong className="card-text h4">
@@ -28,9 +28,24 @@ const ItemDetail = (props) => {
             <p className="card-text">
               <small className="text-muted lead">{categoria}</small>
             </p>
-            <Link to="/cart" className="btn btn-danger">
-            Comprar
-            </Link>
+            <div className='mt-auto'>
+              {quantity === 0 ?(
+                <div className='d-flex align-items-center justify-content-center'><Link className="w-50 btn btn-danger"> Agregar al carrito</Link></div>
+              ) : (
+                <div
+                className='d-flex align-items-center flex-column justify-content-center' style={{gap: ".5rem"}}
+                >
+                  <div 
+                  className='d-flex align-items-center justify-content-between w-50' style={{gap: ".5rem"}}
+                  >
+                    <Link className="w-25 btn btn-dark">-</Link>
+                    <div><span className='fs-3'>{quantity}</span> en el carrito.</div>
+                    <Link className="w-25 btn btn-dark">+</Link>
+                  </div>
+                  <Link className="w-50 btn btn-warning">Limpiar</Link>
+                </div>
+              )}
+            </div>           
           </div>
         </div>
       </div>
