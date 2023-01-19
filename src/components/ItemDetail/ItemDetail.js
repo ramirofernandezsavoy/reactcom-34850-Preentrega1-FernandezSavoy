@@ -5,8 +5,10 @@ import { useCartContext } from '../../context/CartContext';
 const ItemDetail = (props) => {
 
   const { sinopsis, titulo, autor, categoria, img, precio} = props;
-  const {getQuantity, incQuantity, decQuantity, removeFromCart} = useCartContext();
-  const quantity = getQuantity
+  const {getQuantity, incQuantity, decQuantity, removeFromCart, id} = useCartContext();
+  const quantity = getQuantity()
+  console.log(quantity)
+
   return (
     <div className="container p-3">      
       <div className="card mb-3">
@@ -32,7 +34,7 @@ const ItemDetail = (props) => {
             </p>
             <div className='mt-auto'>
               {quantity === 0 ?(
-                <div className='d-flex align-items-center justify-content-center'><Link className="w-50 btn btn-danger" onClick={incQuantity(id)}> Agregar al carrito</Link></div>
+                <div className='d-flex align-items-center justify-content-center'><Link className="w-50 btn btn-danger" onClick={() => incQuantity(id)}> Agregar al carrito</Link></div>
               ) : (
                 <div
                 className='d-flex align-items-center flex-column justify-content-center' style={{gap: ".5rem"}}
@@ -40,11 +42,11 @@ const ItemDetail = (props) => {
                   <div 
                   className='d-flex align-items-center justify-content-between w-50' style={{gap: ".5rem"}}
                   >
-                    <Link className="w-25 btn btn-dark" onClick={decQuantity(id)}>-</Link>
+                    <Link className="w-25 btn btn-dark" onClick={() => decQuantity(id)}>-</Link>                    
                     <div><span className='fs-3'>{quantity}</span> en el carrito.</div>
-                    <Link className="w-25 btn btn-dark" onClick={incQuantity(id)}>+</Link>
+                    <Link className="w-25 btn btn-dark" onClick={() => incQuantity(id)}>+</Link>
                   </div>
-                  <Link className="w-50 btn btn-warning" onClick={removeFromCart(id)}>Limpiar</Link>
+                  <Link className="w-50 btn btn-warning" onClick={() => removeFromCart(id)}>Limpiar</Link>
                 </div>
               )}
             </div>           

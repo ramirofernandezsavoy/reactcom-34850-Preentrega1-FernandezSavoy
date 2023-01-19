@@ -5,23 +5,24 @@ import Footer from "./components/Footer/Footer";
 import ItemListContainer from "./components/Itemlistcontainer/Itemlistcontainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-import useFirebase from "./hooks/useFirebase";
 import Cart from "./components/Cart/Cart";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
 
-  const {productos,getProducts} = useFirebase()
+//   import { useEffect } from "react";
+// import useFirebase from "./hooks/useFirebase";
+  // const {productos,getProducts} = useFirebase()
 
-  useEffect(() => {
-    getProducts()  
-    return () => {
+  // useEffect(() => {
+  //   getProducts()  
+  //   return () => {
       
-    }
-  })
+  //   }
+  // })
 
   return (
-    <useCartProvider>
+    <CartProvider>
     <Router>
       <div className="App">
         <Navbar />
@@ -35,7 +36,7 @@ function App() {
         <Footer/>
       </div>
     </Router>
-    </useCartProvider>
+    </CartProvider>
   );
 }
 

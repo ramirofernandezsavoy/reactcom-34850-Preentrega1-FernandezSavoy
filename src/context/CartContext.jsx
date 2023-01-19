@@ -1,5 +1,6 @@
 import React from 'react'
 import { createContext, useContext } from 'react'
+import { useState } from 'react';
 
 const CartContext = createContext({})
 
@@ -11,9 +12,7 @@ const [cartItems, setcartItems] = useState([])
 
 // Functions
 // Checks if Quantity exists or else it uses 0.
-const getQuantity = (id) => {
-    cartItems.find(item => item.id === id)?.quantity || 0 
-}
+const getQuantity = (id) => cartItems.find(item => item.id === id)?.quantity || 0; 
 
 // Increases Quantity of ID item by 1.
 const incQuantity = (id) => {
@@ -38,7 +37,7 @@ const decQuantity = (id) => {
         if (currentItems.find(item => item.id === id)?.quantity === 1) {
             return currentItems.filter(item => item.id !== id)
         } else {
-            return currentItems.map(items => {
+            return currentItems.map(item => {
                 if (item.id === id) {
                     return { ...item, quantity: item.quantity - 1}
                 } else {
@@ -63,4 +62,4 @@ const removeFromCart = (id) => {
     )
 }
 
-export default cartContext
+export default CartContext
