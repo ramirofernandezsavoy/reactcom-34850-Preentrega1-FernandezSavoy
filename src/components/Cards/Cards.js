@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Cards = (props) => {
   
-  const { id, titulo, autor, categoria, img, precio, btnText} = props; 
+  const { id, titulo, autor, categoria, img, precio, btnText } = props; 
 
   return (
     <div className="card mb-3 p-2 card-main">

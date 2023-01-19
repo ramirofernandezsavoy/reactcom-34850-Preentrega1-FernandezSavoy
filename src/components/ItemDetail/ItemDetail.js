@@ -6,8 +6,7 @@ const ItemDetail = (props) => {
 
   const { sinopsis, titulo, autor, categoria, img, precio} = props;
   const {getQuantity, incQuantity, decQuantity, removeFromCart, id} = useCartContext();
-  const quantity = getQuantity()
-  console.log(quantity)
+  const quantity = getQuantity()  
 
   return (
     <div className="container p-3">      
