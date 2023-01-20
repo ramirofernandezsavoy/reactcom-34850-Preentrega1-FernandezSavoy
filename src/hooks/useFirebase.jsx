@@ -4,33 +4,45 @@ import { collection, getDocs } from "firebase/firestore";
 
 const useFirebase = () => {
 
-    const [productos, setProductos] = useState([]);
+    const [productos,setProductos] = useState([]);
+    const [producto, setProducto] = useState({});
 
-    useEffect(() => {
-      
-    }, [productos])
+    const {setLoading} = GlobalProvider()
     
-    
-    const getProducts = async () => {
+
+    const fetchGetDataCollection = async () => {
+        setLoading(true)
         try {
-            const prodCol = collection(db,'productos')
-            await getDocs(prodCol).then((snapshot) => {
-                if(snapshot === 0) {
-                    console.log("La base de datos esta vacia")
-                }
-                setProductos(snapshot.docs.map((doc) => {
-                    return {
-                        id:doc.id,
-                        ...doc.data()
-                    }
-                }))
-            })
+          const data = collection(db,"productos")
+          const col = await getDocs(data)
+          const response = col.docs.map(doc => doc={id:doc.id,...doc.data()})
+          setProductos(response)
+          setLoading(false)
         } catch (error) {
-            
+          console.log("Hubo un error");
+        }    
+      };
+    
+      const fetchGetIndividualProduct =  async ({id}) => {
+        setLoading(true)
+        try {
+            const document = doc(db,"productos",id)
+            const response = await getDoc(document)
+            let result =response.data()
+            setProducto({id:response.id,...result})
+            setLoading(false)
+    
+        } catch (error) {
+            console.log(error)
         }
-    }
+      };
 
-  return {productos, getProducts}
+  return {
+    productos,
+    getProducts,
+    fetchGetDataCollection,
+    fetchGetIndividualProduct
+    }
 }
 
-export default useFirebase
+export default useFirebase;

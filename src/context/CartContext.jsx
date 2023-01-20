@@ -1,74 +1,47 @@
-import React from 'react'
-import { createContext, useContext, useState } from 'react'
-import Cart from '../components/Cart/Cart';
+import { createContext, useContext, useState } from "react";
+import { unificarItems, verificaSiExisteEnCarrito } from "../helpers";
+import { GlobalProvider } from "./GlobalContext";
 
-const CartContext = createContext({})
+const CartContext = createContext();
 
-export function useCartContext() {
-    return useContext(CartContext)
-}
-export function CartProvider({ children }) {
-const [isOpen, setisOpen] = useState(false)
-const [cartItems, setcartItems] = useState([])
+export const CartProvider = () => useContext(CartContext);
 
-const cartQuantity = cartItems.reduce(
-    (quantity, item) => item.quantity + quantity, 
-    0 )
+const CartState = ({ children }) => {
+  const { setMostrarAlerta } = GlobalProvider();
 
-const openCart = () => setisOpen(true)
-const closeCart = () => setisOpen(false)
+  const [carrito, setCarrito] = useState([]);
 
-// Functions
-// Checks if Quantity exists or else it uses 0.
-const getQuantity = (id) => cartItems.find(item => item.id === id)?.quantity || 0;
+  const agregarAlCarrito = (item) => {
+    if (verificaSiExisteEnCarrito(carrito, item)) {
+      setCarrito(unificarItems(carrito, item));
+      setMostrarAlerta(true);
+      return;
+    }
+    setCarrito([...carrito, item]);
+    setMostrarAlerta(true);
+  };
 
-// Increases Quantity of ID item by 1.
-const incQuantity = (id) => {
-    setcartItems(currentItems => {
-        if (currentItems.find(item => item.id === id) == null) {
-            return [...currentItems, {id, quantity: 1 }]
-        } else {
-            return currentItems.map(item => {
-                if (item.id === id) {
-                    return { ...item, quantity: item.quantity + 1}
-                } else {
-                    return item
-                }
-            })
-        }
-    })
-}
+  const sacarDelCarrito = (id) => {
+    let nuevoCarrito = carrito.filter((e) => e.id !== id);
+    setCarrito(nuevoCarrito);
+  };
 
-// Decreases Quantity of ID item by 1.
-const decQuantity = (id) => {
-    setcartItems(currentItems => {
-        if (currentItems.find(item => item.id === id)?.quantity === 1) {
-            return currentItems.filter(item => item.id !== id)
-        } else {
-            return currentItems.map(item => {
-                if (item.id === id) {
-                    return { ...item, quantity: item.quantity - 1}
-                } else {
-                    return item
-                }
-            })
-        }
-    })
-}
+  const limpiarTodoElCarrito = () => {
+    setCarrito([]);
+  };
 
-// Removes items with matching ID.
-const removeFromCart = (id) => {
-    setcartItems(currentItems => {
-        return currentItems.filter(item => item.id !== id)
-    })
-}
+  return (
+    <CartContext.Provider
+      value={{
+        carrito,
+        agregarAlCarrito,
+        limpiarTodoElCarrito,
+        sacarDelCarrito,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  );
+};
 
-    return (
-        <CartContext.Provider value={{getQuantity, incQuantity, decQuantity, removeFromCart, openCart, closeCart, cartItems, cartQuantity }}>
-            {children}
-            <Cart isOpen={isOpen}/>
-        </CartContext.Provider>
-    )
-}
-
-export default CartContext
+export default CartState;

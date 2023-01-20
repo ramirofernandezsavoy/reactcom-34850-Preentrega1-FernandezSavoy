@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   Offcanvas,
   OffcanvasBody,
   OffcanvasHeader,
@@ -23,6 +24,7 @@ const Cart = ({ isOpen }) => {
             <CartItem key={item.id} {...item} />
           ))}
         </Stack>
+        <Button className="btn-danger w-100">Checkout</Button>
       </OffcanvasBody>
     </Offcanvas>
   );
