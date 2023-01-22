@@ -1,11 +1,11 @@
 .banner-div {   
    width: 100vw;
-   height: 350px;     
+   height: 180px;     
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   background-color: rgba(0, 0, 0, 0.501);
+   background-color: #000000e3;
 }
 
 .banner-container {     
@@ -15,8 +15,9 @@
     align-items: center;   
     background-color: rgba(0, 0, 0, 0.501);
     padding: 20px 40px 20px 40px;
-    border: solid 2px white;    
-    max-width: 700px;    
+    border: solid 1px white;    
+    max-width: 800px;
+    padding: 5px 20px ;   
  }
 
 .banner-h1 {
@@ -26,9 +27,9 @@
     -webkit-background-clip: text;    
     color: transparent;
     margin: 0;
-    font-size: 7em;
-    font-weight: 800;
-    -webkit-text-stroke: 5px #f1a02e33 ;    
+    font-size: 5em;
+    font-weight: 700;
+    -webkit-text-stroke: 3px #f1a02e33 ;    
 }
 
 .banner-p {

@@ -4,11 +4,10 @@ import "../styles/Navbar.css";
 import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
-const Navbar = () => {
-  // const { openCart } = CartContext();  
+const Navbar = () => {  
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-1 text-center">
+      <nav className="navbar navbar-expand-lg bg-black navbar-dark py-1 text-center">
         <div className="container">
           <NavLink to="/" className="navbar-brand">
             <img src={logo} alt="logo" className="p-0 m-0 logo-img" />

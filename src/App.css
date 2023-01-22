@@ -1,7 +1,7 @@
-.App {
-  background-color: black;
-  background-image: url("../public/bannerImg.jpg");  
+.bg-content {  
+  background-image: url("https://r4.wallpaperflare.com/wallpaper/786/670/384/night-artwork-futuristic-city-science-fiction-wallpaper-18d69d3800d09c5860ac51aed852a4fa.jpg");  
   background-repeat: no-repeat;  
   background-position-x: right;
-  background-size: cover; 
+  background-size: cover;
+  background-attachment: fixed;
 }

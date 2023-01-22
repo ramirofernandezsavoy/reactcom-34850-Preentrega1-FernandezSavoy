@@ -24,7 +24,7 @@ const ItemListContainer = ({ greeting }) => {
   }, [categoria]);
 
   return (
-    <div className="item-list-container">
+    <div className="item-list-container bg-content">
       
       <div>
         <p className="m-2 fs-5 badge bg-danger text-wrap">
