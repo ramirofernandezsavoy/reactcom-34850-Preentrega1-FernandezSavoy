@@ -4,7 +4,7 @@ import libros from "../../data/libros";
 import { useCartContext } from "../../context/CartContext";
 
 const CartItem = ({ id, quantity }) => {
-  const { removeFromCart } = useCartContext();
+  // const { removeFromCart } = useCartContext();
   const item = libros.find((i) => i.id === id);
   if (item == null) return null;
 
@@ -26,7 +26,7 @@ const CartItem = ({ id, quantity }) => {
         </div>
       </div>
       <div>{item.price * quantity}</div>
-      <Button variant="outline-danger" size="sm" onClick={() => removeFromCart(item.id)}>X</Button>
+      <Button variant="outline-danger" size="sm">X</Button>
     </Stack>
   );
 };

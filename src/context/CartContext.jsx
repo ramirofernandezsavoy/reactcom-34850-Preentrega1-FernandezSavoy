@@ -10,6 +10,10 @@ const CartState = ({ children }) => {
   const { setMostrarAlerta } = GlobalProvider();
 
   const [carrito, setCarrito] = useState([]);
+  const [isOpen, setIsOpen] = useState(false)
+
+  const openCart = () => setIsOpen(true)
+  const closeCart = () => setIsOpen(false)
 
   const agregarAlCarrito = (item) => {
     if (verificaSiExisteEnCarrito(carrito, item)) {
@@ -34,9 +38,12 @@ const CartState = ({ children }) => {
     <CartContext.Provider
       value={{
         carrito,
+        isOpen,
         agregarAlCarrito,
         limpiarTodoElCarrito,
         sacarDelCarrito,
+        openCart,
+        closeCart
       }}
     >
       {children}

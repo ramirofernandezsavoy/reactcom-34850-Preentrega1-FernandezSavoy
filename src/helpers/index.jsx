@@ -18,10 +18,8 @@ export const dameTotat = (carrito) => {
       }
       return a;
     } )
-  };
+  };  
   
-  
-  export const validarTodoLLeno = (campos) => {
-    
+  export const validarTodoLLeno = (campos) => {    
     return campos.some((campo) => campo === "")
   }

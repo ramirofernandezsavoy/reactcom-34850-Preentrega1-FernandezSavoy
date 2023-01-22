@@ -1,12 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useCartContext } from '../../context/CartContext';
 
 const ItemDetail = (props) => {
 
-  const { sinopsis, titulo, autor, categoria, img, precio} = props;
-  const {getQuantity, incQuantity, decQuantity, removeFromCart, id} = useCartContext();
-  const quantity = getQuantity()  
+  const { sinopsis, titulo, autor, categoria, img, precio} = props;  
 
   return (
     <div className="container p-3">      
@@ -31,7 +28,7 @@ const ItemDetail = (props) => {
             <p className="card-text">
               <small className="text-muted lead">{categoria}</small>
             </p>
-            <div className='mt-auto'>
+            {/* <div className='mt-auto'>
               {quantity === 0 ?(
                 <div className='d-flex align-items-center justify-content-center'><Link className="w-50 btn btn-danger" onClick={() => incQuantity(id)}> Agregar al carrito</Link></div>
               ) : (
@@ -48,7 +45,7 @@ const ItemDetail = (props) => {
                   <Link className="w-50 btn btn-warning" onClick={() => removeFromCart(id)}>Limpiar</Link>
                 </div>
               )}
-            </div>           
+            </div>            */}
           </div>
         </div>
       </div>
