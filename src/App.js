@@ -4,6 +4,7 @@ import GlobalState from "./context/GlobalContext";
 import Layout from './Layout/Layout';
 import Rutas from './Rutas/Rutas';
 import "./App.css";
+// import Test from "./components/Test/Test";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         </CartState>
       </GlobalState>
     </>
+    // <Test/>
   );
 }
 

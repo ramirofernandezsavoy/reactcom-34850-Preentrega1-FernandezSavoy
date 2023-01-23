@@ -2,9 +2,7 @@ import React from "react";
 import "../styles/Cards.css"
 import { Link } from "react-router-dom";
 
-const Cards = (props) => {
-  
-  const { id, titulo, autor, categoria, img, precio, btnText } = props; 
+const Cards = ({ id, titulo, autor, categoria, img, precio, btnText, stock }) => {  
 
   return (
     <div className="card mb-3 p-2 card-main">
@@ -14,13 +12,16 @@ const Cards = (props) => {
         </div>
         <div className="col-md-8">
           <div className="card-body">
-            <h3 className="card-title h6">{titulo}</h3>
-            <p className="card-text">{precio}</p>
+            <h3 className="card-title h6">{ titulo }</h3>
+            <p className="card-text">{ precio }</p>
             <p className="card-text">
-              <small className="text-muted">{autor}</small>              
+              <small className="text-muted">{ autor }</small>              
             </p>
             <p className="card-text">
-              <small className="text-muted">{categoria}</small>
+              <small className="text-muted">{ categoria }</small>
+            </p>
+            <p className="card-text">
+              <small className="text-muted">Stock:{ stock} </small>
             </p>
             
             <Link to={`/item/detail/${id}`} className="btn btn-danger">
