@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/Cards.css"
 import { Link } from "react-router-dom";
 
-const Cards = ({ id, titulo, autor, categoria, img, precio, btnText, stock }) => {  
+const Cards = ({item: { id, titulo, autor, categoria, img, precio, btnText, stock },}) => {  
 
   return (
     <div className="card mb-3 p-2 card-main">

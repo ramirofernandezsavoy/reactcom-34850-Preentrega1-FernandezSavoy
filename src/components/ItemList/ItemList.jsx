@@ -1,38 +1,22 @@
-import { useEffect } from "react";
-import useFirebase from "../../hooks/useFirebase/";
-import Cards from "../Cards/Cards";
+import React from 'react'
+import Cards from '../Cards/Cards'
 
-const ItemList = (props) => {
-  const { id } = props;
-  const { products, getProducts, filterProducts, filteredProducts } = useFirebase();
+const ItemList = ({items}) => {
+    return (
+        <div className="row p-2  p-lg-5 full-height align-items-center">
+         { items && items.map((elemento) => (
+             <Cards 
+             key={elemento.id}
+             item={elemento}
+             />
+         ))} 
+        {items.length < 1 &&
+         <h1 className="display-4 text-dark text-center bg-light mt-5 text-uppercase">
+             No se hayó un resultado que coincida con los criterios de búsqueda.
+        </h1>
+         }
+        </div>
+    )
+}
 
-  useEffect(() => {
-    !id ? getProducts() : filterProducts(id);
-  }, [id]);
-
-  const showCards = !id ? products : filteredProducts;
-  const items = showCards.map(
-    ({ id, titulo, autor, categoria, img, precio, btnText, stock }) => {
-      return (
-        <Cards
-          key={id}
-          titulo={titulo}
-          autor={autor}
-          categoria={categoria}
-          img={img}
-          precio={precio}
-          btnText={btnText}
-          stock={stock}
-        />
-      );
-    }
-  );
-
-  return (
-    <div className="container text-center">
-      <div className="ilcwrapper">{items}</div>
-    </div>
-  );
-};
-
-export default ItemList;
+export default ItemList

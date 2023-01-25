@@ -12,7 +12,7 @@ const Category = () => {
     <>
       <Navbar />      
       <Banner/>
-      <ItemListContainer filter={category} />
+      <ItemListContainer filtro={category} />
       <Footer />
     </>
   )
