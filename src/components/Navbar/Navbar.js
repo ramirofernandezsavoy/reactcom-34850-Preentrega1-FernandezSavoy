@@ -42,20 +42,20 @@ const { totalProductos } = useContext(CarritoContext)
                 </NavLink>
                 <ul className="dropdown-menu">
                   <li>
-                    <NavLink className="dropdown-item" to="/category/fantasia">
+                    <NavLink className="dropdown-item" to="/category/Fantasía">
                       Fantasía
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
                       className="dropdown-item"
-                      to="/category/ciencia_ficcion"
+                      to="/category/Ciencia Ficción"
                     >
                       Ciencia Ficción
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink className="dropdown-item" to="/category/thriller">
+                    <NavLink className="dropdown-item" to="/category/Thriller">
                       Thriller
                     </NavLink>
                   </li>
@@ -65,7 +65,7 @@ const { totalProductos } = useContext(CarritoContext)
             <div>
               <Link to={"/cart"}>
               <Button style={{ width: "3rem", height: "3rem", position: "relative" }} variant="outline-warning" className="rounded-circle">
-                <svg
+                <svg 
                   xmlns="http://www.w3.org/2000/svg"                  
                   fill="currentColor"
                   className="bi bi-cart"

@@ -6,7 +6,8 @@ import libros from "../../data/libros";
 import { useState, useEffect } from "react";
 import Spinner from "../Spinner/Spinner";
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
+  
   const { categoria } = useParams();
   const [res, setRes] = useState([]);
   const [loading, setLoading] = useState();

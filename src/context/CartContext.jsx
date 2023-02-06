@@ -12,7 +12,7 @@ const CarritoContextProvider = ({children}) => {
     const estaEnCarrito = (id) => {
         return carrito.find((product)=> product.item.id === id) ? true : false;
     }
-    
+       
     const borrarProducto = (id) => {
         let bProducto = carrito.filter((item) => item.item.id !== id)
         setCarrito(bProducto)
@@ -40,9 +40,10 @@ const CarritoContextProvider = ({children}) => {
     }
     
     const totalCompra = () => {
-        return carrito.reduce((acumulador, product) =>  acumulador + product.item.price * product.quantity, 0)
-    }
-    
+        console.log(carrito)
+        return carrito.reduce((acumulador, product) =>  acumulador + (product.item.precio * product.quantity), 0)
+        
+    }    
 
     const totalProductos = () => carrito.reduce((acumulador, productoActual) => acumulador + productoActual.quantity, 0)
 

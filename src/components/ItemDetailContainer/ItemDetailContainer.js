@@ -16,7 +16,7 @@ const ItemDetailContainer = () => {
         return () => {
             
     }
-    }, []) 
+    },) 
     
     const filter = id? productos.filter((product) => product.id === id) : null
 

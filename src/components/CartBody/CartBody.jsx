@@ -6,9 +6,8 @@ import ItemCart from '../ItemCart/ItemCart'
 import Formulario from '../Formulario/Formulario'
 import { Button, Stack } from 'react-bootstrap'
 
-const Cart = (item) => {
-    const{carrito, totalCompra} = useContext(CarritoContext)
-    console.log(carrito, totalCompra)
+const Cart = () => {
+    const{carrito, totalCompra} = useContext(CarritoContext)    
     
     if (carrito.length === 0) {
         return(
@@ -25,7 +24,7 @@ const Cart = (item) => {
         <>
         <div style={{backgroundColor: "rgba(255, 255, 255, 0.1)", borderRadius: "20px", margin: "10px"}}>               
             <Stack gap={5} direction='horizontal' className='d-flex justify-content-around align-items-center'>                                                             
-                        <Stack className='' style={{backgroundColor: "rgba(255, 255, 255, 0.5)", borderRadius: "20px", margin: "10px", padding: "10px"}}>
+                        <Stack gap={2} className='' style={{backgroundColor: "rgba(255, 255, 255, 0.5)", borderRadius: "20px", margin: "10px", padding: "10px"}}>
                         <h2 className='h2 text-black'>Carrito</h2>
                             {carrito.map((product) => <ItemCart  product={product} key={product.id}/>)}
                             <p className='text-end p-3 fw-bold h4'>Total $ARS <span className='fw-light'>{totalCompra()}</span></p>                          

@@ -31,7 +31,7 @@ const ItemCart = (item) => {
             <div>
               <Stack direction="horizontal">
                 <p className="fw-light p-1">
-                  ARS $ <span className="fw-bold">{precio}</span>
+                  Unidad: $ <span className="fw-bold">{precio}</span>
                 </p>
                 <p className="fw-light p-1">
                   Total ARS $       
