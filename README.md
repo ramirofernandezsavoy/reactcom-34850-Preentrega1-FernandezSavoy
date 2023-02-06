@@ -2,7 +2,7 @@
 
 ![EWJ-site-logo](https://i.imgur.com/0RVV0Ro.png)
 
-## Proyecto final para el curso de React de Coderhouse que simula un E-commerce de libros.
+## Proyecto final para Coderhouse en React que simula un E-commerce de libros.
 
 Funcionalidades:
 * Listado de productos
@@ -13,7 +13,7 @@ Funcionalidades:
 * Formulario de info del comprador
 
 ## Sitio
-[Bookworms](www./)
+[Bookworms](https://bookworms-shop.vercel.app)
 
 ## Mejoras en progreso
 
