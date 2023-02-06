@@ -1,0 +1,28 @@
+.overImg {
+    /* background-color: rgba(255, 255, 255, 0.644); */
+    border-radius: 50%;
+    padding: 5px;
+    font-weight: 700;
+    font-size: 0.7em;
+    z-index: 30;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: 2px black solid; 
+}
+
+.card-main{
+    background: rgba(255, 255, 255, 0.788);
+    max-width: 700px;    
+}
+
+.img-container {    
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    padding: 5px;
+}
+
+.cart-card {
+    border-radius: 5px;    
+}

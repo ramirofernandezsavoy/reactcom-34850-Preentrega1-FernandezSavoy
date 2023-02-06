@@ -1,7 +1,7 @@
 .ilcwrapper {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 15px;
   grid-auto-rows: minmax(100px, auto);
-  justify-items: center;
+  justify-items: center;  
 }

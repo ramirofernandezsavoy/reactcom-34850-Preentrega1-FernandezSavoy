@@ -1,54 +1,66 @@
-import { createContext, useContext, useState } from "react";
-import { unificarItems, verificaSiExisteEnCarrito } from "../helpers";
-import { GlobalProvider } from "./GlobalContext";
+import React, {createContext, useState} from 'react'
+import { ToastContainer, toast } from 'react-toastify';
 
-const CartContext = createContext();
 
-export const CartProvider = () => useContext(CartContext);
+export const CarritoContext = createContext('');
 
-const CartState = ({ children }) => {
-  const { setMostrarAlerta } = GlobalProvider();
-
-  const [carrito, setCarrito] = useState([]);
-  const [isOpen, setIsOpen] = useState(false)
-
-  const openCart = () => setIsOpen(true)
-  const closeCart = () => setIsOpen(false)
-
-  const agregarAlCarrito = (item) => {
-    if (verificaSiExisteEnCarrito(carrito, item)) {
-      setCarrito(unificarItems(carrito, item));
-      setMostrarAlerta(true);
-      return;
+const CarritoContextProvider = ({children}) => {
+    const [carrito, setCarrito] = useState([])
+    
+    const limpiarCarrito = () => setCarrito([])
+    
+    const estaEnCarrito = (id) => {
+        return carrito.find((product)=> product.item.id === id) ? true : false;
     }
-    setCarrito([...carrito, item]);
-    setMostrarAlerta(true);
-  };
+    
+    const borrarProducto = (id) => {
+        let bProducto = carrito.filter((item) => item.item.id !== id)
+        setCarrito(bProducto)
+    }
 
-  const sacarDelCarrito = (id) => {
-    let nuevoCarrito = carrito.filter((e) => e.id !== id);
-    setCarrito(nuevoCarrito);
-  };
+    const onAddProducto = (item, quantity) => {
+        if (estaEnCarrito(item.item.id)) {
+            setCarrito(carrito.map((product) => {
+                return product.id === item.id ? {...product, quantity: product.quantity + quantity} : product
+            }));
+        }else{
+            setCarrito([...carrito, {...item, quantity}])
+        }
+        toast(`Se agregaron ${quantity} unidades al carrito`, {
+			position: "top-right",
+			autoClose: 1500,
+			hideProgressBar: true,
+			draggable: false,
+			theme: "light",
+			});
+    }
+    
+    const validarFormulario = (campos) => {
+        return campos.some((campo) => campo === "")
+    }
+    
+    const totalCompra = () => {
+        return carrito.reduce((acumulador, product) =>  acumulador + product.item.price * product.quantity, 0)
+    }
+    
 
-  const limpiarTodoElCarrito = () => {
-    setCarrito([]);
-  };
+    const totalProductos = () => carrito.reduce((acumulador, productoActual) => acumulador + productoActual.quantity, 0)
 
-  return (
-    <CartContext.Provider
-      value={{
-        carrito,
-        isOpen,
-        agregarAlCarrito,
-        limpiarTodoElCarrito,
-        sacarDelCarrito,
-        openCart,
-        closeCart
-      }}
-    >
-      {children}
-    </CartContext.Provider>
-  );
-};
+    return (
+        <CarritoContext.Provider value={{
+            totalCompra,
+            totalProductos,
+            validarFormulario,
+            onAddProducto,
+            limpiarCarrito, 
+            estaEnCarrito, 
+            borrarProducto,
+            carrito}}
+            > 
+            {children}
+            <ToastContainer />
+        </CarritoContext.Provider>
+    )
+}
 
-export default CartState;
+export default CarritoContextProvider

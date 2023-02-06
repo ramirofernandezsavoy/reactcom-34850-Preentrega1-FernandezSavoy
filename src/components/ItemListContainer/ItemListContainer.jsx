@@ -1,39 +1,60 @@
-import React, { useEffect} from "react";
-import { GlobalProvider } from "../../context/GlobalContext";
-import useFirebase from "../../hooks/useFirebase";
-import ItemList from "../ItemList/ItemList";
+import React from "react";
+import Cards from "../Cards/Cards";
+import "../styles/Itemlistcontainer.css";
+import { useParams } from "react-router-dom";
+import libros from "../../data/libros";
+import { useState, useEffect } from "react";
+import Spinner from "../Spinner/Spinner";
 
-const ItemListContainer = ({ filtro }) => {
-
-  const { productos, getProducts } = useFirebase();
-  const { buscar } = GlobalProvider();
+const ItemListContainer = ({ greeting }) => {
+  const { categoria } = useParams();
+  const [res, setRes] = useState([]);
+  const [loading, setLoading] = useState();
 
   useEffect(() => {
-    getProducts();
-  }, );
-
-  // const filtered = filtro
-  // ? productos.filter((e) => e.categoria === filtro)
-  // : productos;
-
-  const filtered = productos;
-
-  const busqueda = filtered.filter((f) =>
-  f.nombre.toLocaleLowerCase().includes(buscar.toLocaleLowerCase()));
+    setLoading(true)
+    setTimeout(() => {
+      setRes(
+        categoria
+          ? libros.filter((item) => item.categoria === categoria)
+          : libros
+      );
+      setLoading(false);
+    }, 2000);    
+  }, [categoria]);
 
   return (
-    <div className="item-list-container bg-content">      
+    <div className="item-list-container">
+      
       <div>
         <p className="m-2 fs-5 badge bg-danger text-wrap">
-          Bienvenido, invitado.
+          Bienvenido, usuario.
         </p>
       </div>
       <div className="container text-center">
         <div className="ilcwrapper">
-          <ItemList items={ busqueda }/> 
+          {loading ? (
+            <Spinner/>
+          ) : 
+            res.map(
+              (
+                { id, titulo, autor, categoria, img, precio, btnText },
+                index
+              ) => (
+                <Cards
+                  key={index}
+                  id={id}
+                  titulo={titulo}
+                  autor={autor}
+                  categoria={categoria}
+                  img={img}
+                  precio={precio}
+                  btnText={btnText}
+                />
+              )
+            )}          
         </div>
       </div>
-      
     </div>
   );
 };

@@ -3,15 +3,15 @@ import ItemDetailContainer from '../components/ItemDetailContainer/ItemDetailCon
 import Navbar from '../components/Navbar/Navbar'
 import Banner from "../components/Banner/Banner"
 
-const Item = () => {
+const Individual = () => {
 
     return (
         <>
         <Navbar/>
-        <Banner/>
-        <ItemDetailContainer/>
+        <Banner/>        
+        <ItemDetailContainer/>        
         </>
     )
 }
 
-export default Item
+export default Individual

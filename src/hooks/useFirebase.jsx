@@ -1,48 +1,88 @@
-import { useState } from 'react';
-import db from '../firebase';
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore';
-import { GlobalProvider } from "../context/GlobalContext";
-
+import { useEffect, useState } from 'react'
+import { addDoc, collection, doc, getDoc, getDocs } from 'firebase/firestore'
+import { db } from '../firebase';
+import Swal from 'sweetalert2'
 
 const useFirebase = () => {
 
-  const [products, setProducts] = useState([]);
-  const [product, setProduct] = useState({});  
-  const {setLoading} = GlobalProvider();
+const [productos, setProductos] = useState([])
+const [producto, setProducto] = useState(null)
+const [loading , setLoading] = useState(false)
 
-  const getProducts = async () => {
-    setLoading(true)  
+useEffect(() => {
+    getProducts()
+
+    return () => {
+    }
+}, [])
+
+useEffect(() => {
+
+}, [productos])
+
+
+const getProducts = async () => {
+
     try {
-      const data = collection(db,'productos');
-      const col = await getDocs(data);
-      const response = col.docs.map(doc => doc ={id:doc.id,...doc.data()});
-      setProducts(response);      
-      setLoading(false);
+        setLoading(true)
+        const prodCol = collection(db,'productos')
+        await getDocs(prodCol).then((snapshot) => {
+            if(snapshot.size === 0) {
+                console.log('Base de datos esta vacio')
+            }
+            setLoading(false)
+            setProductos(snapshot.docs.map((doc) =>  {
+                return {
+                    id:doc.id,
+                    ...doc.data()
+                }
+            }))
+        })
     } catch (error) {
-      console.log(error);
+        console.log(error)
     }
-  };
-
-  const getProduct = async ({id}) => {
-    setLoading(true)
-    try {
-      const document = doc(db,'products',id);
-      const response = await getDoc(document);
-      let result = response.data();
-      setProduct({id:response.id,...result});
-      setLoading(false)
-    } catch (error) {
-      console.log(error);
-    }
-  };  
-
-  return {
-    product,    
-    products,    
-    getProduct,
-    getProducts,    
-    }
-    
 }
 
-export default useFirebase;
+const getProduct =  async (id) => {
+
+    try {
+        setLoading(true)
+        const document = doc(db,"productos",id)
+        const response = await getDoc(document)
+        setProducto({id:response.id,...response.data()})
+        setLoading(false)
+    } catch (error) {
+        console.log(error)
+    }
+
+};
+
+const getTicket = async({datos}) => {
+    try {
+        const col = collection(db, "ordenes")
+        const order = await addDoc(col, datos)
+        return (
+            setTimeout(() => {
+                Swal.fire({
+                    title: "Genial!",
+                    text: `Su orden es ${order.id}`,
+                    icon: "success",
+                    timerProgressBar: true,
+                })
+            }, 2000));
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+    return {
+        loading,
+        productos,
+        producto,
+        getProducts,
+        getProduct,
+        getTicket
+    }
+}
+
+export default useFirebase

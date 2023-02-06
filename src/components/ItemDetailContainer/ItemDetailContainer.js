@@ -1,46 +1,48 @@
-import React from "react";
-import { useState } from "react";
-import { useEffect } from "react";
-import '../styles/ItemDetailContainer.css';
-import {useParams } from "react-router-dom";
-import libros from "../../data/libros";
-import ItemDetail from "../ItemDetail/ItemDetail";
-import Spinner from "../Spinner/Spinner";
+import React from 'react'
+import { useEffect } from 'react';
+import {  useParams } from 'react-router-dom'
+import useFirebase from '../../hooks/useFirebase'
+import ItemDetail from '../ItemDetail/ItemDetail'
+import Spinner from '../Spinner/Spinner';
 
+const ItemDetailContainer = () => {
 
-const ItemDetailContainer = () => {  
-const {id} = useParams()
-const [resultado, setResultado] = useState()
+    const { id } = useParams()
+    const {getProduct, productos, loading} = useFirebase()
 
-useEffect(() => {
+    useEffect(() => {
+        getProduct(id)
+    
+        return () => {
+            
+    }
+    }, []) 
+    
+    const filter = id? productos.filter((product) => product.id === id) : null
 
-  setTimeout(() => {
-    setResultado(libros.filter((item) => item.id === Number(id)))  
-  }, 2000);
+    return (
+        <>
+            <section>
+                {loading && <Spinner/>}
+                    {filter.map(({id, titulo, stock, categoria, img, sinopsis, autor, precio}, index) => (
+                        <div>
+                            <ItemDetail
+                            key={index}
+                            id={id}
+                            titulo={titulo}                             
+                            img={img}                            
+                            categoria={categoria}
+                            stock={stock}
+                            sinopsis={sinopsis}
+                            autor={autor}
+                            precio={precio}
+                            />
+                        </div>
+                    ))}
+            </section>
+        </>
+        
+    )
+}
 
-  return () => {}})
-
-  return (
-    <div className="container p-3">
-      {resultado ?    
-      resultado.map(
-            ({ id, titulo, autor, sinopsis, categoria, img, precio, btnText }, index) => (
-              <ItemDetail
-                key={index}
-                id={id}
-                titulo={titulo}
-                autor={autor}
-                sinopsis={sinopsis}
-                categoria={categoria}
-                img={img}
-                precio={precio}
-                btnText={btnText}
-              />
-            )
-          )
-      : <Spinner/>}            
-  </div>
-  );
-};
-
-export default ItemDetailContainer;
+export default ItemDetailContainer

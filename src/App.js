@@ -1,23 +1,25 @@
-
-import CartState from "./context/CartContext";
-import GlobalState from "./context/GlobalContext";
-import Layout from './Layout/Layout';
+import './App.css';
+import Layout from './Layout/Layout'
+import CarritoContextProvider from './context/CartContext';
 import Rutas from './Rutas/Rutas';
-import "./App.css";
+import { BrowserRouter as Router } from 'react-router-dom'
+
+
 
 function App() {
-
-  return (
-    <>
-      <GlobalState>
-        <CartState>
-          <Layout>
-            <Rutas />
-          </Layout>         
-        </CartState>
-      </GlobalState>
-    </>    
-  );
+	return (
+		<>
+		<div className='App'>
+			<Router>
+				<CarritoContextProvider>
+					<Layout>
+						<Rutas/>
+					</Layout>
+				</CarritoContextProvider>
+			</Router>
+		</div>
+		</>
+	);
 }
 
 export default App;

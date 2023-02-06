@@ -1,21 +1,20 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "../Views/Home"
-import Checkout from "../Views/Checkout"
-import Category from "../Views/Category"
-import Individual from "../Views/Individual"
-
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Home from '../Views/Home'
+import Category from '../Views/Category'
+import Cart from '../Views/Cart'
+import Individual from '../Views/Individual'
 
 const Rutas = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/checkout" element={<Checkout />}/>
-        <Route path="/category/:category" element={<Category />}/>
-        <Route path="/item/detail/:id" element={<Individual />}/>        
-      </Routes>
-    </Router>
-  );
-};
 
-export default Rutas;
+    return (
+            <Routes>
+                <Route path='/' element={<Home/>}/>
+                <Route path='/category/:categoria' element={<Category/>} />
+                <Route path='/item/detail/:id' element={<Individual/>} />
+                <Route path='/cart' element={<Cart/>} />                                                 
+            </Routes>
+    )
+}
+
+export default Rutas

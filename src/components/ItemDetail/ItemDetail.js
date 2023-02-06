@@ -1,16 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import ItemCount from '../ItemCount/ItemCount'
+import 'react-toastify/dist/ReactToastify.css';
 
-const ItemDetail = (props) => {
+const ItemDetail = (item) => {
+	const {id, titulo, stock, categoria, img, sinopsis, autor, precio} = item
 
-  const { sinopsis, titulo, autor, categoria, img, precio} = props;  
-
-  return (
-    <div className="container p-3">      
+    return (
+		<>
+			<div className="container p-3">      
       <div className="card mb-3">
       <div className="row g-0">
-        <div className="col-md-4 img-fluid p-3">
-          <img src={img} className="img-fluid rounded-start" alt="..." />
+        <div className="col-md-4 img-fluid p-3 d-flex justify-content-center align-items-center">
+          <img src={img} className="img-fluid rounded w-100" alt="..." />
         </div>
         <div className="col-md-8">
           <div className="card-body">
@@ -19,7 +19,7 @@ const ItemDetail = (props) => {
             {sinopsis}
             </p>
             <p><strong className="card-text h4">
-            {precio}
+            $ {precio}
             </strong>
             </p>
             <p className="card-text">
@@ -27,31 +27,15 @@ const ItemDetail = (props) => {
             </p>
             <p className="card-text">
               <small className="text-muted lead">{categoria}</small>
-            </p>
-            {/* <div className='mt-auto'>
-              {quantity === 0 ?(
-                <div className='d-flex align-items-center justify-content-center'><Link className="w-50 btn btn-danger" onClick={() => incQuantity(id)}> Agregar al carrito</Link></div>
-              ) : (
-                <div
-                className='d-flex align-items-center flex-column justify-content-center' style={{gap: ".5rem"}}
-                >
-                  <div 
-                  className='d-flex align-items-center justify-content-between w-50' style={{gap: ".5rem"}}
-                  >
-                    <Link className="w-25 btn btn-dark" onClick={() => decQuantity(id)}>-</Link>                    
-                    <div><span className='fs-3'>{quantity}</span> en el carrito.</div>
-                    <Link className="w-25 btn btn-dark" onClick={() => incQuantity(id)}>+</Link>
-                  </div>
-                  <Link className="w-50 btn btn-warning" onClick={() => removeFromCart(id)}>Limpiar</Link>
-                </div>
-              )}
-            </div>            */}
+            </p>			       
+			{<ItemCount item={item} />}     
           </div>
         </div>
       </div>
     </div>      
     </div>
-  )
+		</>
+    )
 }
 
 export default ItemDetail

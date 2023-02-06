@@ -1,10 +1,11 @@
 .card-main{
     background: rgba(255, 255, 255, 0.788);
-    
+    max-width: 500px;    
 }
 
 .img-container {    
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;    
+    padding: 5px;
 }
