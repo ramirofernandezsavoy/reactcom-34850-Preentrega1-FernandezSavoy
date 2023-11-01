@@ -20,8 +20,7 @@ const Formulario = ({ total, compra }) => {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();
-    console.log("form", formData.nombre);
+    e.preventDefault();    
     if (
       validarFormulario([
         formData.nombre,
@@ -39,11 +38,11 @@ const Formulario = ({ total, compra }) => {
       return;
     }
     Swal.fire({
-      title: "Orden de compra confirmada",
+      title: "Compra realizada",
       text: `Recibira un mail con los datos de su compra`,
       timerProgressBar: false,
       showConfirmButton: true,
-      confirmButtonText: "Ver orden de compra",      
+      confirmButtonText: "Orden de compra",      
       icon: "success",
     });
     getTicket({ datos: formData });

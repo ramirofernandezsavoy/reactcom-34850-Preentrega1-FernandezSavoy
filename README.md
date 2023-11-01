@@ -1,4 +1,5 @@
 # Bookworms
+Vanagloriados los competentes monos, Nenu y Gaby.
 
 ![EWJ-site-logo](https://i.imgur.com/0RVV0Ro.png)
 
